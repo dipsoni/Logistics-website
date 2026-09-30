@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shri Shyam Logistics & Transport Services - Fast, Safe & Reliable Freight Solutions. Contact us at omshrishyamlogistic@gmail.com, +91 88499 15522, +91 93136 52601.">
+  <title>Shri Shyam Logistics & Transport Services | Official Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- 1. CINEMATIC PRELOADER SEQUENCE -->
+  <div id="sitePreloader">
+    <img src="logo.png" alt="Shri Shyam Logistics Logo" class="preloader-logo">
+    <div class="preloader-track">
+      <div class="preloader-bar"></div>
+    </div>
+    <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-top: 0.75rem;">
+      Initializing Highway Logistics Fleet...
+    </div>
+  </div>
+
+  <!-- TOP CONTACT BAR -->
+  <div style="background: var(--bg-secondary); color: var(--text-primary); padding: 0.45rem 1.5rem; font-size: 0.825rem; border-bottom: 1px solid var(--border-light);">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; font-weight: 600;">
+        <span>📞 <a href="tel:8849915522" style="color: var(--text-primary); text-decoration: none;">+91 88499 15522</a></span>
+        <span>📞 <a href="tel:9313652601" style="color: var(--text-primary); text-decoration: none;">+91 93136 52601</a></span>
+        <span>✉️ <a href="mailto:omshrishyamlogistic@gmail.com" style="color: var(--primary-blue); text-decoration: none;">omshrishyamlogistic@gmail.com</a></span>
+      </div>
+      <div style="color: var(--text-muted); font-size: 0.775rem; font-weight: 600;">
+        🦚 24/7 Transport & Fleet Dispatch Services
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY HEADER & NAVBAR -->
+  <header id="mainHeader">
+    <div class="nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="logo">
+        <img src="logo.png" alt="Shri Shyam Logistics Logo" class="logo-img">
+        <div class="logo-subtext-tag">Logistics & Transport Services</div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-menu">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#why-us" class="nav-link">Why Choose Us</a></li>
+        <li><a href="#coverage" class="nav-link">Coverage</a></li>
+      </ul>
+
+      <!-- CTA Button -->
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="#callback-form" class="btn-callback" onclick="startShipmentJourney(event)">Start Your Shipment</a>
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#hero" class="nav-link" onclick="toggleMobileMenu()">Home</a>
+      <a href="#services" class="nav-link" onclick="toggleMobileMenu()">Services</a>
+      <a href="#why-us" class="nav-link" onclick="toggleMobileMenu()">Why Choose Us</a>
+      <a href="#coverage" class="nav-link" onclick="toggleMobileMenu()">Coverage</a>
+      <a href="#callback-form" class="btn-callback" onclick="toggleMobileMenu(); startShipmentJourney(event);">Start Your Shipment</a>
+    </div>
+  </header>
+
+  <!-- 2. HERO SECTION — CINEMATIC 3/4 TRACKING CAMERA HIGHWAY SCENE -->
+  <section class="hero" id="hero">
+    <div class="hero-container">
+      
+      <!-- Left Content -->
+      <div class="hero-left-content" id="heroTextLayer">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span> Active Fleet & Express Logistics Coverage
+        </div>
+        
+        <h1 class="hero-title">
+          Fast. Safe. Reliable.<br>
+          <span>Logistics That Move</span> Your Business.
+        </h1>
+        
+        <p class="hero-subtitle">
+          Shri Shyam Logistics & Transport Services delivers reliable freight transportation solutions designed to keep your supply chain moving — on time, every time.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#callback-form" class="btn-callback" style="padding: 0.85rem 1.8rem; font-size: 1rem;" onclick="startShipmentJourney(event)">
+            🚚 Start Your Shipment
+          </a>
+          <a href="#services" class="btn-secondary-hero">
+            Explore Services ➔
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Visual (Cinematic 3/4 Tracking Camera Scene Card) -->
+      <div class="hero-visual-card tilt-card" id="heroVisualCard">
+        
+        <!-- Official Logo Showcase Header -->
+        <div class="hero-logo-banner">
+          <img src="logo.png" alt="Shri Shyam Logistics Official Logo" class="hero-logo-img">
+          <span class="hero-status-pill" id="truckStatusPill">● Engine Starting...</span>
+        </div>
+
+        <!-- 3/4 Perspective Stage Box -->
+        <div class="cinematic-stage-container" id="stageContainer">
+          
+          <div class="camera-tracking-rig" id="cameraRig">
+            
+            <!-- Sky & Parallax Clouds -->
+            <div class="sky-layer-3d">
+              <div class="clouds-3d"></div>
+            </div>
+
+            <!-- Distant Mountains -->
+            <div class="mountains-3d"></div>
+
+            <!-- Roadside Passing Streetlights & Poles -->
+            <div class="streetlights-3d"></div>
+
+            <!-- 3/4 Perspective Road Bed -->
+            <div class="road-bed-3d">
+              <div class="lane-dashes-3d"></div>
+            </div>
+
+            <!-- Ground Shadow -->
+            <div class="truck-ground-shadow"></div>
+
+            <!-- Heavy Multi-Axle 3/4 Perspective Semi-Truck SVG -->
+            <div class="cinematic-truck-3d" id="cinematicTruck">
+              
+              <!-- Exhaust Smoke Particle Effect -->
+              <div class="exhaust-smoke"></div>
+
+              <svg width="250" height="95" viewBox="0 0 250 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Headlight Projection Beam -->
+                <polygon points="215,48 250,35 250,75 215,62" fill="#fef08a" opacity="0.45"/>
+
+                <!-- Container Body (3/4 Isometric Perspective) -->
+                <rect x="0" y="8" width="165" height="58" rx="6" fill="#1e293b"/>
+                <rect x="8" y="14" width="150" height="46" rx="4" fill="#0f172a"/>
+                
+                <!-- Branding Container Decal -->
+                <text x="16" y="38" fill="#dc2626" font-weight="900" font-size="14" font-family="'Plus Jakarta Sans', sans-serif">SHYAM</text>
+                <text x="86" y="38" fill="#38bdf8" font-weight="800" font-size="11" font-family="'Plus Jakarta Sans', sans-serif">LOGISTICS</text>
+                <text x="16" y="52" fill="#94a3b8" font-weight="700" font-size="8" font-family="'Plus Jakarta Sans', sans-serif">INTERSTATE FREIGHT CARGO</text>
+
+                <!-- Chrome Lock Latches -->
+                <rect x="154" y="14" width="3" height="46" fill="#cbd5e1"/>
+
+                <!-- Heavy Duty Cabin -->
+                <path d="M165 20H210C214.4 20 218 23.6 218 28V66H165V20Z" fill="#1d4ed8"/>
+                <!-- Windshield & Reflection -->
+                <path d="M174 25H206L212 38H174V25Z" fill="#93c5fd"/>
+                <polygon points="180,27 200,27 195,36 177,36" fill="#ffffff" opacity="0.4"/>
+                
+                <!-- Chrome Bumper & Grill -->
+                <rect x="218" y="44" width="8" height="22" fill="#cbd5e1"/>
+                <circle cx="222" cy="52" r="3" fill="#fef08a"/>
+
+                <!-- Side Mirror -->
+                <rect x="172" y="22" width="4" height="12" fill="#64748b"/>
+
+                <!-- Tail Brake Lights -->
+                <rect x="0" y="24" width="4" height="18" fill="#ef4444"/>
+
+                <!-- Multi-Axle Wheel Assemblies (Spin Animated) -->
+                <!-- Rear Tandem Axles -->
+                <g class="wheel-3d" style="transform-origin: 32px 68px;">
+                  <circle cx="32" cy="68" r="12" fill="#0f172a" stroke="#94a3b8" stroke-width="3"/>
+                  <circle cx="32" cy="68" r="5" fill="#cbd5e1"/>
+                </g>
+                <g class="wheel-3d" style="transform-origin: 66px 68px;">
+                  <circle cx="66" cy="68" r="12" fill="#0f172a" stroke="#94a3b8" stroke-width="3"/>
+                  <circle cx="66" cy="68" r="5" fill="#cbd5e1"/>
+                </g>
+                <g class="wheel-3d" style="transform-origin: 100px 68px;">
+                  <circle cx="100" cy="68" r="12" fill="#0f172a" stroke="#94a3b8" stroke-width="3"/>
+                  <circle cx="100" cy="68" r="5" fill="#cbd5e1"/>
+                </g>
+
+                <!-- Front Axle -->
+                <g class="wheel-3d" style="transform-origin: 195px 68px;">
+                  <circle cx="195" cy="68" r="12" fill="#0f172a" stroke="#94a3b8" stroke-width="3"/>
+                  <circle cx="195" cy="68" r="5" fill="#cbd5e1"/>
+                </g>
+              </svg>
+            </div>
+
+          </div>
+
+          <div class="hero-overlay-badge">
+            📍 <span>Origin Terminal ➔ Destination Freight Hub</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
+          <span>🚚 Full & Part Load Transport</span>
+          <span style="color: var(--primary-blue); font-weight: 800;">✓ On-Time Delivery Guarantee</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRUST & QUICK STATS STRIP -->
+  <section class="trust-strip">
+    <div class="trust-container">
+      <div class="trust-card tilt-card reveal-on-scroll">
+        <div class="trust-icon">🎧</div>
+        <div>
+          <div class="trust-title">24/7 Support</div>
+          <div class="trust-desc">Always available dispatch team</div>
+        </div>
+      </div>
+
+      <div class="trust-card tilt-card reveal-on-scroll">
+        <div class="trust-icon">⚡</div>
+        <div>
+          <div class="trust-title">Fast Delivery</div>
+          <div class="trust-desc">Optimized transit routes</div>
+        </div>
+      </div>
+
+      <div class="trust-card tilt-card reveal-on-scroll">
+        <div class="trust-icon">🛡️</div>
+        <div>
+          <div class="trust-title">Safe Cargo Handling</div>
+          <div class="trust-desc">Fully insured logistics transport</div>
+        </div>
+      </div>
+
+      <div class="trust-card tilt-card reveal-on-scroll">
+        <div class="trust-icon">📡</div>
+        <div>
+          <div class="trust-title">Real-Time Updates</div>
+          <div class="trust-desc">Proactive status communications</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICES SECTION (CONNECTED LOGISTICS NODES) -->
+  <section class="section" id="services">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-tag">JOURNEY NODE 01 — SERVICES</span>
+      <h2 class="section-title">Our Logistics Solutions</h2>
+      <p class="section-desc">Comprehensive freight and transportation solutions tailored to keep your supply chain running seamlessly.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card tilt-card reveal-on-scroll">
+        <div class="service-icon-box">🚛</div>
+        <h3 class="service-title">Freight Transportation</h3>
+        <p class="service-text">Full Truckload (FTL) and Less-than-Truckload (LTL) road freight hauling with real-time GPS fleet monitoring.</p>
+      </div>
+
+      <div class="service-card tilt-card reveal-on-scroll">
+        <div class="service-icon-box">⚡</div>
+        <h3 class="service-title">Express Delivery</h3>
+        <p class="service-text">Time-critical priority transport for urgent cargo that needs fast, scheduled door-to-door delivery.</p>
+      </div>
+
+      <div class="service-card tilt-card reveal-on-scroll">
+        <div class="service-icon-box">📦</div>
+        <h3 class="service-title">Cargo Logistics</h3>
+        <p class="service-text">End-to-end shipment planning, heavy cargo handling, and containerized transport solutions.</p>
+      </div>
+
+      <div class="service-card tilt-card reveal-on-scroll">
+        <div class="service-icon-box">🏬</div>
+        <h3 class="service-title">Warehousing</h3>
+        <p class="service-text">Secure distribution hubs, pallet storage, inventory management, and fulfillment services.</p>
+      </div>
+
+      <div class="service-card tilt-card reveal-on-scroll">
+        <div class="service-icon-box">🛣️</div>
+        <h3 class="service-title">Local Transportation</h3>
+        <p class="service-text">Prompt regional distribution and last-mile pickup and delivery within metropolitan areas.</p>
+      </div>
+
+      <div class="service-card tilt-card reveal-on-scroll">
+        <div class="service-icon-box">🌐</div>
+        <h3 class="service-title">Long-Distance Transportation</h3>
+        <p class="service-text">Cross-country interstate shipping supported by experienced drivers and heavy haulers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ANIMATED COUNTER STATS BANNER -->
+  <div class="stats-banner reveal-on-scroll">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-number" data-target="500">0</div>
+        <div class="stat-label">Deliveries Completed</div>
+      </div>
+
+      <div>
+        <div class="stat-number" data-target="50">0</div>
+        <div class="stat-label">Active Freight Routes</div>
+      </div>
+
+      <div>
+        <div class="stat-number" data-target="24">0</div>
+        <div class="stat-label">24/7 Dispatch Support</div>
+      </div>
+
+      <div>
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">% Safety & On-Time Trust</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY CHOOSE US SECTION -->
+  <section class="why-section" id="why-us">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-tag">JOURNEY NODE 02 — WHY US</span>
+      <h2 class="section-title">Why Choose Shri Shyam Logistics?</h2>
+      <p class="section-desc">We combine industry experience, modern vehicles, and dedicated support to deliver excellence.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card tilt-card reveal-on-scroll">
+        <div class="why-num">01</div>
+        <h3 class="why-title">Reliable Delivery</h3>
+        <p class="why-text">We prioritize punctuality and careful route planning so your shipments always arrive on schedule.</p>
+      </div>
+
+      <div class="why-card tilt-card reveal-on-scroll">
+        <div class="why-num">02</div>
+        <h3 class="why-title">Experienced Team</h3>
+        <p class="why-text">Our logistics managers and certified drivers bring years of hands-on transport experience.</p>
+      </div>
+
+      <div class="why-card tilt-card reveal-on-scroll">
+        <div class="why-num">03</div>
+        <h3 class="why-title">Safe Cargo Handling</h3>
+        <p class="why-text">Strict safety protocols and full cargo protection ensure your goods remain undamaged.</p>
+      </div>
+
+      <div class="why-card tilt-card reveal-on-scroll">
+        <div class="why-num">04</div>
+        <h3 class="why-title">Transparent Service</h3>
+        <p class="why-text">Honest communications, zero hidden charges, and direct updates from pickup to final drop.</p>
+      </div>
+
+      <div class="why-card tilt-card reveal-on-scroll">
+        <div class="why-num">05</div>
+        <h3 class="why-title">24/7 Dedicated Support</h3>
+        <p class="why-text">Our customer care team is available around the clock to assist with requests and inquiries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (3-STEP FLOW) -->
+  <section class="section">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-tag">JOURNEY NODE 03 — PROCESS</span>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-desc">A seamless 3-step logistics experience from first contact to safe destination arrival.</p>
+    </div>
+
+    <div class="flow-grid">
+      <div class="flow-step-card tilt-card reveal-on-scroll">
+        <div class="step-circle">01</div>
+        <h3 class="step-title">Tell Us What You Need</h3>
+        <p class="step-text">Fill out our simple callback form with your name and mobile number. Our advisor will reach out to discuss your freight.</p>
+      </div>
+
+      <div class="flow-step-card active tilt-card reveal-on-scroll">
+        <div class="step-circle">02</div>
+        <h3 class="step-title">We Plan & Transport</h3>
+        <p class="step-text">Our dispatch team selects the optimal vehicle, schedules pickup, and manages transit details efficiently.</p>
+      </div>
+
+      <div class="flow-step-card tilt-card reveal-on-scroll">
+        <div class="step-circle">03</div>
+        <h3 class="step-title">Your Cargo Arrives Safely</h3>
+        <p class="step-text">Your shipment is delivered securely to its destination on time, backed by proof of delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE SECTION -->
+  <section class="section" id="coverage">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-tag">JOURNEY NODE 04 — NETWORK</span>
+      <h2 class="section-title">Reliable Transport Coverage</h2>
+      <p class="section-desc">Connecting key regional centers and interstate freight corridors with dedicated transport units.</p>
+    </div>
+
+    <div class="coverage-box tilt-card reveal-on-scroll">
+      <div>
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem;">
+          Widespread Route Connectivity
+        </h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+          Whether you need local city deliveries or long-distance interstate freight, our fleet maintains active routes connecting major commercial hubs.
+        </p>
+        <a href="#callback-form" class="btn-callback" onclick="startShipmentJourney(event)">Start Your Shipment</a>
+      </div>
+
+      <div class="route-list">
+        <div class="route-item">
+          <span class="route-dot"></span>
+          <span>Metropolitan & Regional Hub Distribution</span>
+        </div>
+        <div class="route-item">
+          <span class="route-dot"></span>
+          <span>Interstate & Long-Distance Freight Corridors</span>
+        </div>
+        <div class="route-item">
+          <span class="route-dot"></span>
+          <span>Industrial Hub & Warehouse Drayage</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CALLBACK FORM SECTION — THE DESTINATION -->
+  <section class="callback-section" id="callback-form">
+    <div class="callback-container reveal-on-scroll">
+      
+      <div class="form-card tilt-card">
+        <div style="font-size: 0.85rem; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+          🎯 DESTINATION REACHED
+        </div>
+        <h2 class="form-card-title">Let's Move Your Business</h2>
+        <p class="form-card-subtitle">Tell us your name and number. Our team will get in touch with you shortly.</p>
+
+        <!-- General Form Alert Banner -->
+        <div class="form-alert-banner error" id="formAlertBanner"></div>
+
+        <form class="simple-form" id="callbackForm" onsubmit="handleFormSubmit(event)" novalidate>
+          
+          <div>
+            <label class="form-group-label" for="fullName">Full Name *</label>
+            <input 
+              type="text" 
+              id="fullName" 
+              name="fullName" 
+              class="form-input-field" 
+              placeholder="e.g. Alexander Vance" 
+              required 
+              autocomplete="name"
+              oninput="validateNameInput()"
+            >
+            <div class="inline-error-msg" id="nameError">Please enter your full name (at least 2 characters).</div>
+          </div>
+
+          <div>
+            <label class="form-group-label" for="mobileNumber">Mobile Number *</label>
+            <input 
+              type="tel" 
+              id="mobileNumber" 
+              name="mobileNumber" 
+              class="form-input-field" 
+              placeholder="e.g. 8849915522 or 9313652601" 
+              required 
+              autocomplete="tel"
+              oninput="validateMobileInput()"
+            >
+            <div class="inline-error-msg" id="mobileError">Please enter a valid 10-digit Indian mobile number (e.g. 8849915522).</div>
+          </div>
+
+          <button type="submit" class="btn-submit-callback" id="submitBtn">
+            <span id="btnText">📞 Request a Callback</span>
+          </button>
+
+        </form>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1.25rem;">
+          🔒 Your contact details are kept strictly private. Our team will call you back shortly.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUCCESS POPUP MODAL WITH 3D ANIMATED CHECKMARK -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+      <div class="success-check-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="76" height="76">
+          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">
+        Inquiry Received!
+      </h3>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 0.5rem; font-weight: 600;" id="successMsgText">
+        Thank you! We have received your inquiry. We will contact you shortly.
+      </p>
+
+      <button class="btn-modal-close" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Shri Shyam Logistics Logo" class="footer-logo-img">
+        <p class="footer-text">
+          Professional freight transportation and logistics solutions designed for efficiency, safety, and reliability.
+        </p>
+        <div style="font-size: 0.85rem; color: var(--text-light); display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.5rem;">
+          <div>📞 <a href="tel:8849915522" style="color: var(--text-primary); text-decoration: none;">+91 88499 15522</a></div>
+          <div>📞 <a href="tel:9313652601" style="color: var(--text-primary); text-decoration: none;">+91 93136 52601</a></div>
+          <div>✉️ <a href="mailto:omshrishyamlogistic@gmail.com" style="color: var(--primary-blue); text-decoration: none;">omshrishyamlogistic@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why-us">Why Choose Us</a></li>
+          <li><a href="#coverage">Coverage</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Freight Transportation</a></li>
+          <li><a href="#services">Express Delivery</a></li>
+          <li><a href="#services">Cargo Logistics</a></li>
+          <li><a href="#services">Warehousing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Contact Us</h4>
+        <ul class="footer-links">
+          <li><a href="tel:8849915522">Call +91 88499 15522</a></li>
+          <li><a href="tel:9313652601">Call +91 93136 52601</a></li>
+          <li><a href="mailto:omshrishyamlogistic@gmail.com">Email Us</a></li>
+          <li><a href="#callback-form">Start Your Shipment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Shri Shyam Logistics & Transport Services. All rights reserved. • Fast, Safe & Reliable Transport.
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC & CINEMATIC 3/4 CAMERA ENGINE -->
+  <script>
+    // 1. Preloader & Cinematic Movie Startup Sequence
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const preloader = document.getElementById('sitePreloader');
+        if (preloader) preloader.classList.add('loaded');
+        
+        // Start 0-4s Movie Acceleration Sequence
+        startMovieSequence();
+      }, 700);
+    });
+
+    function startMovieSequence() {
+      const heroVisualCard = document.getElementById('heroVisualCard');
+      const statusPill = document.getElementById('truckStatusPill');
+
+      if (!heroVisualCard || !statusPill) return;
+
+      // 0-1s: Engine idle
+      statusPill.textContent = "● Engine Starting...";
+      
+      // 1-2s: Rolling out
+      setTimeout(() => {
+        statusPill.textContent = "● Accelerating...";
+      }, 1500);
+
+      // 3s+: Cruising speed
+      setTimeout(() => {
+        heroVisualCard.classList.add('cruising');
+        statusPill.textContent = "● 24/7 Live Highway Fleet";
+      }, 3000);
+    }
+
+    // 2. Journey CTA Smooth Route Action
+    function startShipmentJourney(e) {
+      if (e) e.preventDefault();
+      const target = document.getElementById('callback-form');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          const nameInput = document.getElementById('fullName');
+          if (nameInput) nameInput.focus();
+        }, 600);
+      }
+    }
+
+    // 3. Scroll Navbar elevation & Interactive Camera Rig Focus
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Camera Scroll Focus effect
+      const cameraRig = document.getElementById('cameraRig');
+      if (cameraRig && window.scrollY < 800) {
+        const scrollFactor = window.scrollY / 800;
+        const zoomZ = scrollFactor * 50;
+        const tiltX = 6 - scrollFactor * 4;
+        cameraRig.style.transform = `rotateY(-12deg) rotateX(${tiltX}deg) translateZ(${zoomZ}px)`;
+      }
+    });
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+
+    // 4. Input Validation
+    function isValidIndianMobile(mobile) {
+      const clean = mobile.replace(/[\s\-\(\)]/g, '');
+      return /^(?:\+91|91|0)?[6-9]\d{9}$/.test(clean);
+    }
+
+    function validateNameInput() {
+      const nameInput = document.getElementById('fullName');
+      const nameError = document.getElementById('nameError');
+      if (nameInput.value.trim().length >= 2) {
+        nameInput.classList.remove('input-error');
+        nameError.style.display = 'none';
+        return true;
+      }
+      return false;
+    }
+
+    function validateMobileInput() {
+      const mobileInput = document.getElementById('mobileNumber');
+      const mobileError = document.getElementById('mobileError');
+      if (isValidIndianMobile(mobileInput.value)) {
+        mobileInput.classList.remove('input-error');
+        mobileError.style.display = 'none';
+        return true;
+      }
+      return false;
+    }
+
+    // 5. Form Submit Handler
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const nameInput = document.getElementById('fullName');
+      const mobileInput = document.getElementById('mobileNumber');
+      const nameError = document.getElementById('nameError');
+      const mobileError = document.getElementById('mobileError');
+      const alertBanner = document.getElementById('formAlertBanner');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+
+      alertBanner.style.display = 'none';
+      let isValid = true;
+
+      if (!nameInput.value || nameInput.value.trim().length < 2) {
+        nameInput.classList.add('input-error');
+        nameError.style.display = 'block';
+        isValid = false;
+      } else {
+        nameInput.classList.remove('input-error');
+        nameError.style.display = 'none';
+      }
+
+      if (!mobileInput.value || !isValidIndianMobile(mobileInput.value)) {
+        mobileInput.classList.add('input-error');
+        mobileError.style.display = 'block';
+        isValid = false;
+      } else {
+        mobileInput.classList.remove('input-error');
+        mobileError.style.display = 'none';
+      }
+
+      if (!isValid) return;
+
+      submitBtn.disabled = true;
+      btnText.innerHTML = '<span class="spinner"></span> Processing Inquiry...';
+
+      try {
+        const response = await fetch('/api/inquiry', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nameInput.value.trim(),
+            mobile: mobileInput.value.trim()
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          document.getElementById('successMsgText').textContent = result.message || "Thank you! We have received your inquiry. We will contact you shortly.";
+          document.getElementById('successModal').style.display = 'flex';
+          document.getElementById('callbackForm').reset();
+        } else {
+          alertBanner.textContent = result.error || 'Unable to submit inquiry. Please check your inputs and try again.';
+          alertBanner.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Inquiry submission error:', error);
+        alertBanner.textContent = 'Connection error. Please check your internet connection and try again.';
+        alertBanner.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        btnText.innerHTML = '📞 Request a Callback';
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+
+    // 6. 3D Tilt, Tracking Camera Mouse Parallax & Counter Animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // Intersection Observer for 3D Scroll Reveal & Counters
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+
+            // Trigger Number Counters
+            const counters = entry.target.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+              if (!counter.classList.contains('counted')) {
+                counter.classList.add('counted');
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                  current += increment;
+                  if (current >= target) {
+                    counter.textContent = target + (target === 100 ? '%' : '+');
+                    clearInterval(timer);
+                  } else {
+                    counter.textContent = current + '+';
+                  }
+                }, 30);
+              }
+            });
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal-on-scroll, .stats-banner').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // 3/4 Perspective Tracking Camera Mouse Interaction
+      const heroSection = document.getElementById('hero');
+      const cameraRig = document.getElementById('cameraRig');
+      const heroTextLayer = document.getElementById('heroTextLayer');
+
+      if (heroSection && cameraRig && window.innerWidth > 768) {
+        heroSection.addEventListener('mousemove', (e) => {
+          const rect = heroSection.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+          // Smooth tracking camera shift
+          cameraRig.style.transform = `rotateY(${ -12 + x * 8 }deg) rotateX(${ 6 + y * -6 }deg) translate3d(${ x * -10 }px, ${ y * -6 }px, 0)`;
+          heroTextLayer.style.transform = `translate3d(${ x * 10 }px, ${ y * 10 }px, 0)`;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+          cameraRig.style.transform = 'rotateY(-12deg) rotateX(6deg) translate3d(0, 0, 0)';
+          heroTextLayer.style.transform = 'translate3d(0, 0, 0)';
+        });
+      }
+
+      // 3D Card Tilt Effect on Hover
+      const tiltCards = document.querySelectorAll('.tilt-card');
+      tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          if (window.innerWidth <= 768 || card.id === 'heroVisualCard') return;
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((y - centerY) / centerY) * -5;
+          const rotateY = ((x - centerX) / centerX) * 5;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px) scale3d(1.015, 1.015, 1.015)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (card.id === 'heroVisualCard') return;
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0) scale3d(1, 1, 1)';
+        });
+      });
+
+      // Interactive Click Ripple Effect on Buttons
+      document.querySelectorAll('.btn-callback, .btn-submit-callback, .btn-secondary-hero').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+
+          ripple.className = 'btn-ripple';
+          ripple.style.width = ripple.style.height = `${size}px`;
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+
+          const existingRipple = this.querySelector('.btn-ripple');
+          if (existingRipple) existingRipple.remove();
+
+          this.appendChild(ripple);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

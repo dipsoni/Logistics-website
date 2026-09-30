@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shri Shyam Logistics Admin | Private Inquiry Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="logo.png">
+  <!-- jsPDF CDN for PDF Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body style="background-color: var(--bg-secondary);">
+
+  <!-- PASSCODE LOGIN MODAL (SECURITY CHECK) -->
+  <div class="modal-overlay" id="authModal" style="display: flex; position: fixed; inset: 0; align-items: center; justify-content: center; z-index: 99999; background: rgba(15, 23, 42, 0.45); backdrop-filter: blur(6px);">
+    <div class="modal-content" style="max-width: 440px; padding: 2.5rem; margin: auto;">
+      <div style="text-align: center; margin-bottom: 1rem;">
+        <img src="logo.png" alt="Shri Shyam Logistics Logo" style="height: 65px; width: auto; object-fit: contain;">
+      </div>
+      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Admin Access</h2>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;">Please enter your admin passcode to access customer inquiries for <strong>Shri Shyam Logistics & Transport Services</strong>.</p>
+      
+      <div style="text-align: left; margin-bottom: 1rem;">
+        <input type="password" id="passcodeInput" class="form-input-field" placeholder="Enter Admin Passcode" required>
+        <div id="authError" style="color: var(--danger-red); font-size: 0.8rem; font-weight: 600; margin-top: 0.4rem; display: none;">
+          Invalid Passcode. Please try again.
+        </div>
+      </div>
+
+      <button class="btn-submit-callback" onclick="attemptLogin()" style="width: 100%;">
+        Unlock Portal
+      </button>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Default passcode: <code style="background:#f1f5f9; padding:0.1rem 0.4rem; border-radius:4px;">admin123</code></p>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN DASHBOARD WRAPPER -->
+  <div id="adminPortal" style="display: none; min-height: 100vh; flex-direction: column;">
+    
+    <!-- Admin Header -->
+    <header style="background: #ffffff; border-bottom: 1px solid var(--border-light); padding: 0.85rem 2rem;">
+      <div style="max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img src="logo.png" alt="Shri Shyam Logistics Logo" style="height: 65px; width: auto; object-fit: contain;">
+          <div>
+            <div style="font-weight: 900; font-size: 1.15rem; color: var(--primary-navy);">Private Portal</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Inquiry Management & PDF Export • omshrishyamlogistic@gmail.com</div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span class="pulse-dot"></span>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary-navy);" id="inquiryCountBadge">0 Total Inquiries</span>
+          <button class="btn-secondary-hero" onclick="logout()" style="padding: 0.4rem 1rem; font-size: 0.8rem;">🔒 Lock Portal</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <main style="flex: 1; max-width: 1240px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem;">
+      
+      <!-- Toolbar & Date Filters -->
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-navy);">Inquiry Filters</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Filter records by date range before exporting to PDF.</p>
+          </div>
+
+          <!-- PDF Export Button -->
+          <button class="btn-callback" onclick="exportToPDF()" style="padding: 0.65rem 1.4rem; font-size: 0.9rem;">
+            📄 Export Filtered PDF Report
+          </button>
+        </div>
+
+        <!-- Quick Filter Buttons -->
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">Filter Period:</span>
+          
+          <button class="filter-btn active" id="btn-all" onclick="setFilter('all')">All Time</button>
+          <button class="filter-btn" id="btn-today" onclick="setFilter('today')">Today</button>
+          <button class="filter-btn" id="btn-yesterday" onclick="setFilter('yesterday')">Yesterday</button>
+          <button class="filter-btn" id="btn-last7" onclick="setFilter('last7')">Last 7 Days</button>
+          <button class="filter-btn" id="btn-month" onclick="setFilter('month')">This Month</button>
+          <button class="filter-btn" id="btn-custom" onclick="setFilter('custom')">Custom Range</button>
+        </div>
+
+        <!-- Custom Date Range Inputs -->
+        <div id="customDateRangeBox" style="display: none; gap: 1rem; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-light);">
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">START DATE:</label>
+            <input type="date" id="startDate" class="form-input-field" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;" onchange="applyCustomFilter()">
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">END DATE:</label>
+            <input type="date" id="endDate" class="form-input-field" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;" onchange="applyCustomFilter()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Inquiries Table Card -->
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm);">
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+            <thead>
+              <tr style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                <th style="padding: 0.85rem 1.25rem;"># ID</th>
+                <th style="padding: 0.85rem 1.25rem;">Date & Time</th>
+                <th style="padding: 0.85rem 1.25rem;">Customer Name</th>
+                <th style="padding: 0.85rem 1.25rem;">Mobile Number</th>
+                <th style="padding: 0.85rem 1.25rem; text-align: right;">Quick Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inquiryTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="noRecordsMsg" style="display: none; padding: 3rem; text-align: center; color: var(--text-muted); font-size: 0.95rem;">
+          No customer inquiries found for the selected date range.
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <style>
+    .filter-btn {
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      color: var(--text-muted);
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+    }
+  </style>
+
+  <script>
+    let allInquiries = [];
+    let filteredInquiries = [];
+    let currentFilter = 'all';
+    let adminPasscode = '';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedPasscode = sessionStorage.getItem('admin_passcode');
+      if (savedPasscode) {
+        document.getElementById('passcodeInput').value = savedPasscode;
+        attemptLogin();
+      }
+    });
+
+    async function attemptLogin() {
+      const passcode = document.getElementById('passcodeInput').value;
+      const errorBox = document.getElementById('authError');
+
+      try {
+        const response = await fetch(`/api/admin/inquiries?passcode=${encodeURIComponent(passcode)}`);
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          adminPasscode = passcode;
+          sessionStorage.setItem('admin_passcode', passcode);
+          allInquiries = result.inquiries || [];
+          document.getElementById('authModal').style.display = 'none';
+          document.getElementById('adminPortal').style.display = 'flex';
+          applyFilter('all');
+        } else {
+          errorBox.style.display = 'block';
+        }
+      } catch (e) {
+        errorBox.style.display = 'block';
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('admin_passcode');
+      window.location.reload();
+    }
+
+    function setFilter(filterType) {
+      currentFilter = filterType;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`btn-${filterType}`).classList.add('active');
+
+      const customBox = document.getElementById('customDateRangeBox');
+      if (filterType === 'custom') {
+        customBox.style.display = 'flex';
+      } else {
+        customBox.style.display = 'none';
+        applyFilter(filterType);
+      }
+    }
+
+    function applyFilter(filterType) {
+      const now = new Date();
+      const todayStr = now.toISOString().split('T')[0];
+
+      filteredInquiries = allInquiries.filter(item => {
+        const itemDateStr = item.formattedDate || (item.timestamp ? item.timestamp.split('T')[0] : '');
+
+        if (filterType === 'all') return true;
+        
+        if (filterType === 'today') {
+          return itemDateStr === todayStr;
+        }
+        
+        if (filterType === 'yesterday') {
+          const y = new Date(now);
+          y.setDate(y.getDate() - 1);
+          return itemDateStr === y.toISOString().split('T')[0];
+        }
+
+        if (filterType === 'last7') {
+          const sevenDaysAgo = new Date(now);
+          sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+          const itemTime = new Date(item.timestamp).getTime();
+          return itemTime >= sevenDaysAgo.getTime();
+        }
+
+        if (filterType === 'month') {
+          const currentMonth = now.getMonth();
+          const currentYear = now.getFullYear();
+          const itemDate = new Date(item.timestamp);
+          return itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear;
+        }
+
+        return true;
+      });
+
+      renderTable();
+    }
+
+    function applyCustomFilter() {
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
+
+      if (!start || !end) return;
+
+      filteredInquiries = allInquiries.filter(item => {
+        const itemDate = item.formattedDate || (item.timestamp ? item.timestamp.split('T')[0] : '');
+        return itemDate >= start && itemDate <= end;
+      });
+
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('inquiryTableBody');
+      const noRecords = document.getElementById('noRecordsMsg');
+      const badge = document.getElementById('inquiryCountBadge');
+
+      badge.textContent = `${filteredInquiries.length} Inquiries (${allInquiries.length} Total)`;
+
+      if (filteredInquiries.length === 0) {
+        tbody.innerHTML = '';
+        noRecords.style.display = 'block';
+        return;
+      }
+
+      noRecords.style.display = 'none';
+      tbody.innerHTML = filteredInquiries.map((item, idx) => `
+        <tr style="border-bottom: 1px solid var(--border-subtle);">
+          <td style="padding: 1rem 1.25rem; font-weight: 700; color: var(--accent-red); font-family: monospace;">${item.id || `INQ-${idx+1}`}</td>
+          <td style="padding: 1rem 1.25rem; font-weight: 600; color: var(--primary-navy);">${item.formattedTime || item.timestamp}</td>
+          <td style="padding: 1rem 1.25rem; font-weight: 700;">${item.name}</td>
+          <td style="padding: 1rem 1.25rem; font-weight: 700; color: var(--accent-peacock); font-family: monospace;">${item.mobile}</td>
+          <td style="padding: 1rem 1.25rem; text-align: right;">
+            <a href="tel:${item.mobile}" class="btn-secondary-hero" style="padding: 0.3rem 0.75rem; font-size: 0.75rem; text-decoration: none;">📞 Call</a>
+            <a href="https://wa.me/91${item.mobile.replace(/\D/g,'')}" target="_blank" class="btn-secondary-hero" style="padding: 0.3rem 0.75rem; font-size: 0.75rem; text-decoration: none; color: #16a34a;">💬 WhatsApp</a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function exportToPDF() {
+      if (!window.jspdf) {
+        alert('PDF generator loading. Please try again in a moment.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.setTextColor(30, 27, 75);
+      doc.text('Shri Shyam Logistics — Customer Inquiry Report', 14, 20);
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(100, 116, 139);
+      doc.text(`Filter Period: ${currentFilter.toUpperCase()} | Total Records: ${filteredInquiries.length}`, 14, 28);
+      doc.text(`Generated On: ${new Date().toLocaleString()} | Contact: omshrishyamlogistic@gmail.com`, 14, 34);
+
+      doc.setDrawColor(226, 232, 240);
+      doc.line(14, 38, 196, 38);
+
+      const tableData = filteredInquiries.map((item, index) => [
+        index + 1,
+        item.formattedTime || item.timestamp,
+        item.name,
+        item.mobile
+      ]);
+
+      doc.autoTable({
+        startY: 42,
+        head: [['#', 'Date & Time', 'Customer Name', 'Mobile Number']],
+        body: tableData,
+        headStyles: { fillColor: [30, 27, 75], textColor: [255, 255, 255], fontStyle: 'bold' },
+        alternateRowStyles: { fillColor: [248, 250, 252] },
+        styles: { fontSize: 9, cellPadding: 4 }
+      });
+
+      doc.save(`ShriShyamLogistics_Inquiries_${currentFilter}_${new Date().toISOString().split('T')[0]}.pdf`);
+    }
+  </script>
+
+</body>
+</html>
